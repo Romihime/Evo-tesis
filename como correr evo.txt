@@ -1,0 +1,3 @@
+
+java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Desktop/EvoMaster-master/openapi.json --bbTargetUrl https://petstore3.swagger.io --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
+
