@@ -21,16 +21,29 @@ open class XmlApplication {
         }
     }
 
+    // 1. Recibe XML, responde STRING
     @PostMapping(
+        path = ["/string-response"],
         consumes = [MediaType.APPLICATION_XML_VALUE],
+        produces = [MediaType.TEXT_PLAIN_VALUE]
+    )
+    fun xmlToString(@RequestBody input: Person): ResponseEntity<String> {
+        return if (input.age in 20..30) {
+            ResponseEntity.ok("ok")
+        } else {
+            ResponseEntity.ok("not ok")
+        }
+    }
+
+    // 2. Recibe STRING, responde XML
+    @PostMapping(
+        path = ["/from-string"],
+        consumes = [MediaType.TEXT_PLAIN_VALUE],
         produces = [MediaType.APPLICATION_XML_VALUE]
     )
-    fun recibirXml(@RequestBody input: Person): ResponseEntity<Person> {
-        return if (input.age in 20..30) {
-            ResponseEntity.ok(input.copy(name = input.name + "_aceptado"))
-        } else {
-            ResponseEntity.status(400).build()
-        }
+    fun stringToXml(@RequestBody input: String): ResponseEntity<Person> {
+        val name = input.trim()
+        return ResponseEntity.ok(Person(name, age = 25))
     }
 }
 
