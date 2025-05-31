@@ -1,5 +1,5 @@
 
-package com.foo.rest.examples.spring.openapi.v3.xmlPruebaRomi
+package com.foo.rest.examples.spring.openapi.v3.romiXmlPrueba
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
