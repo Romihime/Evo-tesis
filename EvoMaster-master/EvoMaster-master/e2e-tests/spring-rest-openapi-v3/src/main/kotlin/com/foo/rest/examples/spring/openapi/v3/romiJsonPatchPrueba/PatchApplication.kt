@@ -1,4 +1,4 @@
-package com.foo.rest.examples.spring.openapi.v3.romiPatchPrueba
+package com.foo.rest.examples.spring.openapi.v3.romiJsonPatchPrueba
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import com.github.fge.jsonpatch.JsonPatch
+import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @RestController

@@ -10,7 +10,7 @@ import org.springframework.boot.SpringApplication
 import org.springframework.context.ConfigurableApplicationContext
 
 
-abstract class SpringController(protected val applicationClass: Class<T>) : EmbeddedSutController() {
+abstract class SpringController(protected val applicationClass: Class<*>) : EmbeddedSutController() {
 
     init {
         super.setControllerPort(0)
