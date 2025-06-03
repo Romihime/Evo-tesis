@@ -6,14 +6,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import com.github.fge.jsonpatch.JsonPatch
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 import org.springframework.boot.runApplication
 
-@SpringBootApplication
+@SpringBootApplication(exclude = [SecurityAutoConfiguration::class])
 @RestController
 @RequestMapping("/api/patch")
-class JsonPatchApplication {
+open class JsonPatchApplication {
 
-    data class Person(var name: String, var age: Int)
+    data class Person(
+        var name: String = "",
+        var age: Int = 0
+    )
 
     @PatchMapping(consumes = ["application/json-patch+json"], produces = ["application/json"])
     fun patchPerson(@RequestBody patch: JsonPatch): ResponseEntity<Person> {
@@ -39,3 +43,4 @@ class JsonPatchApplication {
         }
     }
 }
+
