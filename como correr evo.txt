@@ -3,3 +3,59 @@ mvn clean install -X -DskipTests
 
 java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Desktop/EvoMaster-master/openapi.json --bbTargetUrl https://petstore3.swagger.io --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
 
+para averiguar el openApí: http://localhost:8080/v3/api-docs
+
+
+XML:
+
+
+java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Documents/GitHub/Evo-tesis/EvoMaster-master/EvoMaster-master/core/target/xmlApiSchema.json --bbTargetUrl http://localhost:8080 --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
+
+
+bien ahora investigar porque el body no se crea
+
+
+
+
+
+Json patch :
+
+
+
+java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Documents/GitHub/Evo-tesis/EvoMaster-master/EvoMaster-master/core/target/jsonPatchApiSchema.json --bbTargetUrl http://localhost:8080 --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
+
+
+2025-06-02 19:46:45.141  WARN 19820 --- [nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.util.ArrayList<com.github.fge.jsonpatch.JsonPatchOperation>` from Object value (token `JsonToken.FIELD_NAME`); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize value of type `java.util.ArrayList<com.github.fge.jsonpatch.JsonPatchOperation>` from Object value (token `JsonToken.FIELD_NAME`)
+ at [Source: (PushbackInputStream); line: 2, column: 21]]
+2025-06-02 19:46:45.141 ERROR 19820 --- [nio-8080-exec-9] o.a.c.c.C.[Tomcat].[localhost]           : Exception Processing ErrorPage[errorCode=0, location=/error]
+
+19:46:49.180 [main] WARN  o.e.c.o.service.HttpWsTestCaseWriter - Currently no assertions are generated for response type: text/html;charset=utf-8
+
+19:46:17.488 [main] WARN  o.e.c.s.service.SearchTimeController - The SUT sent a 'Connection: close' HTTP header. This should be avoided, if possible
+
+
+/**
+    * Calls:
+    * (400) PATCH:/api/patch
+    * Found 1 potential fault of type-code 200
+    */
+    @Test @Timeout(60)
+    public void test_0_patchOnPatchReturnsSchemaInvalidResponse() throws Exception {
+        
+        // Fault200. Received A Response From API That Is Not Valid According To Its Schema. PATCH:/api/patch -> Response status 400 not defined for path '/api/patch'.
+        given().accept("*/*")
+                .contentType("application/json-patch+json")
+                .body(" { " + 
+                    " \"EM_tainted_map\": \"_EM_0_XYZ_\" " + 
+                    " } ")
+                .patch(baseUrlOfSut + "/api/patch")
+                .then()
+                .statusCode(400)
+                .assertThat()
+                .contentType("text/html");
+    }
+
+
+
+
+MULTIPART/FORM-DATA:
