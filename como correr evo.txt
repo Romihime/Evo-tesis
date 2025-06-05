@@ -9,7 +9,7 @@ para averiguar el openApí: http://localhost:8080/v3/api-docs
 XML:
 
 
-java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Documents/GitHub/Evo-tesis/EvoMaster-master/EvoMaster-master/core/target/xmlApiSchema.json --bbTargetUrl http://localhost:8080 --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
+java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Documents/GitHub/Evo-tesis/EvoMaster-master/SchemaXml.json --bbTargetUrl http://localhost:8080 --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
 
 
 bien ahora investigar porque el body no se crea
@@ -22,7 +22,7 @@ Json patch :
 
 
 
-java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Documents/GitHub/Evo-tesis/EvoMaster-master/EvoMaster-master/core/target/jsonPatchApiSchema.json --bbTargetUrl http://localhost:8080 --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
+java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Documents/GitHub/Evo-tesis/EvoMaster-master/SchemaJsonPatch.json --bbTargetUrl http://localhost:8080 --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
 
 
 2025-06-02 19:46:45.141  WARN 19820 --- [nio-8080-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.util.ArrayList<com.github.fge.jsonpatch.JsonPatchOperation>` from Object value (token `JsonToken.FIELD_NAME`); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize value of type `java.util.ArrayList<com.github.fge.jsonpatch.JsonPatchOperation>` from Object value (token `JsonToken.FIELD_NAME`)
@@ -57,5 +57,10 @@ java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario
 
 
 
-
 MULTIPART/FORM-DATA:
+
+
+java -jar evomaster.jar  --blackBox true --bbSwaggerUrl file:///C:/Users/Usuario/Documents/GitHub/Evo-tesis/EvoMaster-master/SchemaMulti.json --bbTargetUrl http://localhost:8080 --outputFormat JAVA_JUNIT_5 --outputFolder ./evomaster-tests --maxTime 30s --ratePerMinute 60
+
+
+
